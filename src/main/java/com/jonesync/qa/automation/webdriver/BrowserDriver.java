@@ -3,6 +3,7 @@ package com.jonesync.qa.automation.webdriver;
 import com.jonesync.qa.automation.webelement.Element;
 import com.jonesync.qa.automation.webelement.LogElement;
 import com.jonesync.qa.automation.webelement.UIElement;
+import jdk.jfr.Timespan;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +50,7 @@ public class BrowserDriver extends Driver {
                 throw new InvalidArgumentException("Unsupported browser type: " + browser.name());
             }
         }
+        webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(30));
     }
 
     @Override
@@ -67,6 +70,7 @@ public class BrowserDriver extends Driver {
      * And this all works because each one is an Element
      * If later you create another Decorator you can add it to the chain here and
      * its behavior will be added to the other two!
+     *
      * @param locator - By locator string
      * @return - Element (a log element)
      */
